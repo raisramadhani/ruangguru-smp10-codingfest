@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modul MIT App Inventor - Halaman Profil & Umur</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap');
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+
+        /* Animasi sederhana untuk modal */
+        .modal-enter {
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen relative">
+
+    <div class="h-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
+
+    <header class="bg-white border-b border-slate-200 py-8 px-6 sticky top-0 z-40 shadow-sm">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-4">
+                <div class="bg-indigo-600 text-white p-3 rounded-2xl shadow-md shadow-indigo-200">
+                    <i class="fa-solid fa-user-gear text-2xl"></i>
+                </div>
+                <div>
+                    <span
+                        class="text-xs font-bold tracking-wider text-indigo-600 uppercase bg-indigo-50 px-2.5 py-1 rounded-full">Tahap
+                        Akhir Eksplorasi</span>
+                    <h1 class="text-2xl md:text-3xl font-extrabold text-slate-900 mt-1">Desain & Blocks: HalamanProfil
+                    </h1>
+                </div>
+            </div>
+            <div class="flex items-center gap-2 text-sm font-medium text-slate-500 bg-slate-100 px-4 py-2 rounded-xl">
+                <i class="fa-solid fa-graduation-cap text-indigo-500"></i>
+                <span>Modul Praktik Siswa</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 py-10">
+
+        <div
+            class="bg-gradient-to-tr from-indigo-900 to-slate-900 text-white p-6 md:p-8 rounded-3xl shadow-xl mb-10 relative overflow-hidden">
+            <div class="absolute right-0 top-0 opacity-10 translate-x-10 -translate-y-10">
+                <i class="fa-solid fa-cubes text-[200px]"></i>
+            </div>
+            <div class="relative z-10 max-w-2xl">
+                <h2 class="text-xl md:text-2xl font-bold mb-2">Mengapa Kita Membuat Halaman Ini?</h2>
+                <p class="text-indigo-100 leading-relaxed text-sm md:text-base">
+                    Kita akan membuat satu <span class="text-amber-400 font-semibold">Screen terakhir</span> untuk
+                    mengatur profil pengguna (Nama dan Email). Dengan halaman ini, aplikasi yang kamu buat akan terasa
+                    jauh lebih personal, interaktif, dan mampu menyimpan data secara permanen!
+                </p>
+            </div>
+        </div>
+
+        <section
+            class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 md:p-8 mb-8 transition-all hover:shadow-md">
+            <div class="flex items-center gap-3 border-b border-slate-100 pb-4 mb-6">
+                <div
+                    class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center font-bold text-lg shadow-sm">
+                    A</div>
+                <h2 class="text-xl font-bold text-slate-900">Persiapan & Update Menu</h2>
+            </div>
+
+            <div class="space-y-4">
+                <div class="flex gap-4 items-start p-4 bg-slate-50 rounded-xl border border-slate-100">
+                    <span
+                        class="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-xs font-bold mt-0.5">1</span>
+                    <p class="text-slate-700 text-sm md:text-base">
+                        Di bagian atas layar MIT App Inventor, klik tombol <span
+                            class="font-bold bg-white px-2 py-0.5 border border-slate-300 rounded shadow-xs text-indigo-600"><i
+                                class="fa-solid fa-plus-circle text-xs mr-1"></i>Add Screen</span>.
+                    </p>
+                </div>
+                <div class="flex gap-4 items-start p-4 bg-slate-50 rounded-xl border border-slate-100">
+                    <span
+                        class="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-xs font-bold mt-0.5">2</span>
+                    <p class="text-slate-700 text-sm md:text-base">
+                        Ketik nama screen baru: <span
+                            class="code-font font-semibold bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded border border-indigo-100">HalamanProfil</span>,
+                        lalu klik <span class="font-bold bg-slate-200 px-2 py-0.5 rounded text-slate-700">OK</span>.
+                    </p>
+                </div>
+                <div class="flex gap-4 items-start p-4 bg-amber-50/50 rounded-xl border border-amber-100">
+                    <span
+                        class="flex-shrink-0 w-6 h-6 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center text-xs font-bold mt-0.5">3</span>
+                    <div class="w-full">
+                        <p class="font-bold text-amber-800 text-sm md:text-base mb-2"><i
+                                class="fa-solid fa-pen-to-square mr-1"></i>Update HalamanUtama:</p>
+                        <ul class="space-y-2 text-slate-700 text-sm md:text-base list-disc list-inside pl-1">
+                            <li>Kembali ke screen <span
+                                    class="code-font font-semibold text-slate-900 bg-white px-1.5 py-0.5 rounded border border-slate-200">HalamanUtama</span>.
+                            </li>
+                            <li>Tarik 1 <span class="font-bold text-indigo-600">Button</span> baru ke posisi paling
+                                bawah.</li>
+                            <li>Ubah <span class="font-semibold text-slate-600">Text</span> di Properties menjadi: <span
+                                    class="italic font-medium text-slate-900 bg-white px-1.5 py-0.5 border rounded">"Edit
+                                    Profil"</span>.</li>
+                            <li>Klik <span
+                                    class="font-bold text-slate-700 bg-slate-200 px-2 py-0.5 rounded text-xs">Rename
+                                    Component</span> menjadi: <span
+                                    class="code-font font-bold text-emerald-600">Tombol_MenuProfil</span>.</li>
+                            <li>Di tampilan <strong>Blocks</strong>, tambahkan logika: <code
+                                    class="bg-white border px-1.5 py-0.5 rounded text-slate-800 code-font text-sm">when Tombol_MenuProfil.Click do</code>
+                                <i class="fa-solid fa-arrow-right text-slate-400 mx-1"></i> <code
+                                    class="bg-white border px-1.5 py-0.5 rounded text-slate-800 code-font text-sm">open another screen screenName</code>
+                                isi dengan <code
+                                    class="bg-white border px-1.5 py-0.5 rounded text-indigo-600 font-bold code-font text-sm">"HalamanProfil"</code>.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section
+            class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 md:p-8 mb-8 transition-all hover:shadow-md">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-bold text-lg shadow-sm">
+                        B</div>
+                    <h2 class="text-xl font-bold text-slate-900">Desain (Designer)</h2>
+                </div>
+                <span
+                    class="text-xs bg-indigo-50 text-indigo-700 font-bold px-3 py-1 rounded-full border border-indigo-100">
+                    Ganti Screen Aktif ke: <strong>HalamanProfil</strong>
+                </span>
+            </div>
+
+            <div class="space-y-6">
+                <div>
+                    <h3 class="font-bold text-slate-800 mb-2 border-l-4 border-indigo-500 pl-3">1. Paste Header</h3>
+                    <p class="text-slate-700 text-sm md:text-base ml-4">
+                        Tekan tombol <span
+                            class="font-bold bg-slate-100 border border-slate-300 px-1.5 py-0.5 rounded">Ctrl + V</span>
+                        di keyboard Anda agar Header dan Logo muncul di posisi paling atas.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-800 mb-2 border-l-4 border-indigo-500 pl-3">2. Identitas Saat Ini
+                    </h3>
+                    <ul class="list-disc list-inside text-slate-700 text-sm md:text-base ml-4 space-y-1">
+                        <li>Tarik <strong>Label</strong>, Rename: <code
+                                class="bg-slate-100 text-emerald-700 px-1.5 py-0.5 rounded code-font font-bold">Teks_NamaSekarang</code>,
+                            Text: <em>"Nama: (Belum diatur)"</em>.</li>
+                        <li>Tarik <strong>Label</strong>, Rename: <code
+                                class="bg-slate-100 text-emerald-700 px-1.5 py-0.5 rounded code-font font-bold">Teks_EmailSekarang</code>,
+                            Text: <em>"Email: (Belum diatur)"</em>.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-800 mb-2 border-l-4 border-indigo-500 pl-3">3. Form Perubahan Data
+                    </h3>
+                    <ul class="list-disc list-inside text-slate-700 text-sm md:text-base ml-4 space-y-1">
+                        <li>Tarik <strong>TextBox</strong>, Rename: <code
+                                class="bg-slate-100 text-emerald-700 px-1.5 py-0.5 rounded code-font font-bold">Input_NamaBaru</code>,
+                            Hint: <em>"Masukkan Nama Lengkap"</em>.</li>
+                        <li>Tarik <strong>TextBox</strong>, Rename: <code
+                                class="bg-slate-100 text-emerald-700 px-1.5 py-0.5 rounded code-font font-bold">Input_EmailBaru</code>,
+                            Hint: <em>"Masukkan Alamat Email"</em>.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-800 mb-2 border-l-4 border-indigo-500 pl-3">4. Tombol Aksi</h3>
+                    <p class="text-slate-700 text-sm md:text-base ml-4">
+                        Tarik <strong>Button</strong>, Rename: <code
+                            class="bg-slate-100 text-emerald-700 px-1.5 py-0.5 rounded code-font font-bold">Tombol_SimpanProfil</code>,
+                        Text: <em>"Simpan Perubahan"</em>.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-800 mb-2 border-l-4 border-indigo-500 pl-3">5. Komponen Non-Visual
+                    </h3>
+                    <ul class="list-disc list-inside text-slate-700 text-sm md:text-base ml-4 space-y-1">
+                        <li>Tarik <strong>TinyDB</strong> (Rename: <code
+                                class="bg-slate-100 text-purple-700 px-1.5 py-0.5 rounded code-font font-bold">Database_Aplikasi</code>).
+                        </li>
+                        <li>Tarik <strong>Notifier</strong> (Rename: <code
+                                class="bg-slate-100 text-purple-700 px-1.5 py-0.5 rounded code-font font-bold">Notifikasi_Pesan</code>).
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section
+            class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 md:p-8 mb-8 transition-all hover:shadow-md">
+            <div class="flex items-center gap-3 border-b border-slate-100 pb-4 mb-6">
+                <div
+                    class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-lg shadow-sm">
+                    C</div>
+                <h2 class="text-xl font-bold text-slate-900">Kode (Blocks)</h2>
+            </div>
+
+            <p class="text-sm text-slate-600 mb-6 font-medium bg-slate-50 p-3 rounded-lg border border-slate-200">
+                <i class="fa-solid fa-arrow-pointer text-indigo-500 mr-2"></i> Pindah ke tampilan
+                <strong>Blocks</strong>. Ikuti instruksi di bawah ini untuk menyusun logika aplikasinya.
+            </p>
+
+            <div class="mb-8">
+                <h3 class="font-bold text-lg text-slate-800 mb-4 pb-2 border-b-2 border-emerald-100">
+                    1. Memuat Data Saat Layar Dibuka
+                </h3>
+                <ul class="space-y-4 text-slate-700 text-sm md:text-base ml-2">
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-puzzle-piece text-amber-500 mt-1"></i>
+                        <div>
+                            Tarik blok <code
+                                class="bg-amber-100 text-amber-800 px-2 py-0.5 rounded code-font font-semibold">when HalamanProfil.Initialize do</code>.
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-puzzle-piece text-emerald-500 mt-1"></i>
+                        <div>
+                            Di dalam blok tersebut, tarik <code
+                                class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded code-font font-semibold">set Teks_NamaSekarang.Text to</code>.
+                            Pasangkan dengan blok <code
+                                class="bg-red-100 text-red-800 px-2 py-0.5 rounded code-font font-semibold">join</code>.
+                            <ul class="list-disc list-inside mt-2 ml-4 space-y-1 text-slate-600">
+                                <li><strong>Lubang 1:</strong> Teks <code
+                                        class="bg-slate-100 px-1.5 py-0.5 rounded text-indigo-600 font-bold">"Nama: "</code>.
+                                </li>
+                                <li><strong>Lubang 2:</strong> <code
+                                        class="bg-purple-100 text-purple-800 px-1.5 py-0.5 rounded code-font">call Database_Aplikasi.GetValue</code>,
+                                    tag: <code
+                                        class="bg-slate-100 px-1.5 py-0.5 rounded text-indigo-600 font-bold">"User_Nama"</code>,
+                                    valueIfTagNotThere: <code
+                                        class="bg-slate-100 px-1.5 py-0.5 rounded text-indigo-600 font-bold">"User"</code>.
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-puzzle-piece text-emerald-500 mt-1"></i>
+                        <div>
+                            Tarik <code
+                                class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded code-font font-semibold">set Teks_EmailSekarang.Text to</code>.
+                            Pasangkan dengan blok <code
+                                class="bg-red-100 text-red-800 px-2 py-0.5 rounded code-font font-semibold">join</code>.
+                            <ul class="list-disc list-inside mt-2 ml-4 space-y-1 text-slate-600">
+                                <li><strong>Lubang 1:</strong> Teks <code
+                                        class="bg-slate-100 px-1.5 py-0.5 rounded text-indigo-600 font-bold">"Email: "</code>.
+                                </li>
+                                <li><strong>Lubang 2:</strong> <code
+                                        class="bg-purple-100 text-purple-800 px-1.5 py-0.5 rounded code-font">call Database_Aplikasi.GetValue</code>,
+                                    tag: <code
+                                        class="bg-slate-100 px-1.5 py-0.5 rounded text-indigo-600 font-bold">"User_Email"</code>,
+                                    valueIfTagNotThere: <code
+                                        class="bg-slate-100 px-1.5 py-0.5 rounded text-indigo-600 font-bold">"belum@diatur.com"</code>.
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="font-bold text-lg text-slate-800 mb-4 pb-2 border-b-2 border-emerald-100">
+                    2. Logika Tombol Simpan
+                </h3>
+                <ul class="space-y-4 text-slate-700 text-sm md:text-base ml-2">
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-puzzle-piece text-amber-500 mt-1"></i>
+                        <div>
+                            Tarik blok <code
+                                class="bg-amber-100 text-amber-800 px-2 py-0.5 rounded code-font font-semibold">when Tombol_SimpanProfil.Click do</code>.
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-puzzle-piece text-purple-500 mt-1"></i>
+                        <div>
+                            Masukkan blok <code
+                                class="bg-purple-100 text-purple-800 px-2 py-0.5 rounded code-font font-semibold">call Database_Aplikasi.StoreValue</code>.
+                            Isi tag: <code
+                                class="bg-slate-100 px-1.5 py-0.5 rounded text-indigo-600 font-bold">"User_Nama"</code>,
+                            valueToStore: <code
+                                class="bg-green-100 text-green-800 px-1.5 py-0.5 rounded code-font">Input_NamaBaru.Text</code>.
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-puzzle-piece text-purple-500 mt-1"></i>
+                        <div>
+                            Masukkan blok <code
+                                class="bg-purple-100 text-purple-800 px-2 py-0.5 rounded code-font font-semibold">call Database_Aplikasi.StoreValue</code>.
+                            Isi tag: <code
+                                class="bg-slate-100 px-1.5 py-0.5 rounded text-indigo-600 font-bold">"User_Email"</code>,
+                            valueToStore: <code
+                                class="bg-green-100 text-green-800 px-1.5 py-0.5 rounded code-font">Input_EmailBaru.Text</code>.
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3 mt-6">
+                        <i class="fa-solid fa-tv text-slate-500 mt-1"></i>
+                        <div class="w-full bg-slate-50 p-4 rounded-lg border border-slate-200">
+                            <strong class="block text-slate-800 mb-2">Memperbarui Tampilan Secara Langsung:</strong>
+                            <ul class="list-disc list-inside space-y-2 text-slate-700">
+                                <li>Tarik <code
+                                        class="bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded code-font font-semibold">set Teks_NamaSekarang.Text to</code>.
+                                    Pasangkan dengan <code
+                                        class="bg-red-100 text-red-800 px-1.5 py-0.5 rounded code-font font-semibold">join</code>
+                                    antara teks <code
+                                        class="bg-slate-100 px-1.5 py-0.5 rounded text-indigo-600 font-bold">"Nama: "</code>
+                                    dan <code
+                                        class="bg-green-100 text-green-800 px-1.5 py-0.5 rounded code-font">Input_NamaBaru.Text</code>.
+                                </li>
+                                <li>Tarik <code
+                                        class="bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded code-font font-semibold">set Teks_EmailSekarang.Text to</code>.
+                                    Pasangkan dengan <code
+                                        class="bg-red-100 text-red-800 px-1.5 py-0.5 rounded code-font font-semibold">join</code>
+                                    antara teks <code
+                                        class="bg-slate-100 px-1.5 py-0.5 rounded text-indigo-600 font-bold">"Email: "</code>
+                                    dan <code
+                                        class="bg-green-100 text-green-800 px-1.5 py-0.5 rounded code-font">Input_EmailBaru.Text</code>.
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3 mt-4">
+                        <i class="fa-solid fa-bell text-slate-500 mt-1"></i>
+                        <div class="w-full bg-slate-50 p-4 rounded-lg border border-slate-200">
+                            <strong class="block text-slate-800 mb-2">Notifikasi & Reset:</strong>
+                            <ul class="list-disc list-inside space-y-2 text-slate-700">
+                                <li>Tarik <code
+                                        class="bg-purple-100 text-purple-800 px-1.5 py-0.5 rounded code-font font-semibold">call Notifikasi_Pesan.ShowAlert notice</code>,
+                                    isi dengan teks <code
+                                        class="bg-slate-100 px-1.5 py-0.5 rounded text-indigo-600 font-bold">"Profil Berhasil Diperbarui!"</code>.
+                                </li>
+                                <li>Tarik <code
+                                        class="bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded code-font font-semibold">set Input_NamaBaru.Text to</code>,
+                                    isi dengan teks kosong <code
+                                        class="bg-slate-100 px-1.5 py-0.5 rounded text-indigo-600 font-bold">""</code>.
+                                </li>
+                                <li>Tarik <code
+                                        class="bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded code-font font-semibold">set Input_EmailBaru.Text to</code>,
+                                    isi dengan teks kosong <code
+                                        class="bg-slate-100 px-1.5 py-0.5 rounded text-indigo-600 font-bold">""</code>.
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <div id="btnSelanjutnyaWrapper" class="flex justify-end mt-10 mb-6">
+            <button onclick="bukaModal()"
+                class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-full font-bold shadow-lg shadow-indigo-200 transition-all transform hover:-translate-y-1 flex items-center gap-2 group">
+                Selanjutnya
+                <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i>
+            </button>
+        </div>
+
+        <section id="tahapRahasia"
+            class="hidden bg-gradient-to-br from-indigo-50 to-white rounded-2xl border-2 border-indigo-200 shadow-lg p-6 md:p-8 mb-8 mt-12 transition-all relative overflow-hidden">
+            <div
+                class="absolute top-0 right-0 bg-amber-500 text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl shadow-sm">
+                <i class="fa-solid fa-unlock mr-1"></i> Modul Terbuka
+            </div>
+
+            <div class="flex items-center gap-3 border-b-2 border-indigo-100 pb-4 mb-6">
+                <div
+                    class="w-10 h-10 rounded-xl bg-gradient-to-tr from-pink-500 to-indigo-500 text-white flex items-center justify-center font-bold text-lg shadow-sm">
+                    D</div>
+                <h2 class="text-xl font-bold text-indigo-900">Misi Tambahan: Input Tanggal Lahir & Kalkulator Umur!</h2>
+            </div>
+
+            <p
+                class="text-slate-700 leading-relaxed text-sm md:text-base mb-6 bg-white p-4 rounded-xl border border-slate-100 shadow-sm">
+                Luar biasa kamu berhasil sampai di tahap ini! Sekarang kita akan menaikkan level aplikasimu dengan
+                menggunakan <strong>DatePicker</strong>. Fitur ini akan meminta pengguna memasukkan tanggal lahir, lalu
+                sistem kita akan otomatis menghitung <strong>Umurnya dalam satuan Tahun dan Bulan</strong> berdasarkan
+                waktu saat ini. Mari kita buat logikanya!
+            </p>
+
+            <div class="space-y-8">
+                <div>
+                    <h3 class="font-bold text-slate-800 mb-3 border-l-4 border-pink-500 pl-3">1. Tambahkan Komponen di
+                        Designer</h3>
+                    <ul class="list-disc list-inside text-slate-700 text-sm md:text-base ml-4 space-y-2">
+                        <li>Dari menu <strong>User Interface</strong>, tarik komponen <strong>DatePicker</strong> ke
+                            layar. Rename menjadi <code
+                                class="bg-slate-100 text-emerald-700 px-1.5 py-0.5 rounded code-font font-bold">Pilih_TanggalLahir</code>
+                            dan ubah <em>Text</em>-nya menjadi <em>"Atur Tanggal Lahir"</em>.</li>
+                        <li>Tarik komponen <strong>Label</strong>, Rename: <code
+                                class="bg-slate-100 text-emerald-700 px-1.5 py-0.5 rounded code-font font-bold">Teks_TanggalLahir</code>,
+                            Text: <em>"Tanggal Lahir: -"</em>.</li>
+                        <li>Tarik satu <strong>Label</strong> lagi, Rename: <code
+                                class="bg-slate-100 text-emerald-700 px-1.5 py-0.5 rounded code-font font-bold">Teks_Umur</code>,
+                            Text: <em>"Umur: -"</em>.</li>
+                        <li>Dari menu <strong>Sensors</strong>, tarik komponen <strong>Clock</strong>. Karena ini
+                            komponen non-visual, ia akan muncul di bawah layar. Rename menjadi <code
+                                class="bg-slate-100 text-purple-700 px-1.5 py-0.5 rounded code-font font-bold">Waktu_Sekarang</code>.
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-slate-800 mb-3 border-l-4 border-pink-500 pl-3">2. Susun Logika Cerdas di
+                        Blocks</h3>
+                    <div class="bg-slate-50 p-5 rounded-xl border border-slate-200">
+                        <ul class="space-y-6 text-slate-700 text-sm md:text-base">
+
+                            <li class="flex items-start gap-3 pb-4 border-b border-slate-200">
+                                <i class="fa-solid fa-puzzle-piece text-amber-500 mt-1"></i>
+                                <div>
+                                    Buka laci <strong class="text-slate-900">Pilih_TanggalLahir</strong>, lalu tarik
+                                    blok <code
+                                        class="bg-amber-100 text-amber-800 px-2 py-0.5 rounded code-font font-semibold">when Pilih_TanggalLahir.AfterDateSet do</code>.
+                                    Semua blok di bawah ini akan kita masukkan ke dalam bagian <em>do</em> pada blok
+                                    ini.
+                                </div>
+                            </li>
+
+                            <li class="flex items-start gap-3 pb-4 border-b border-slate-200">
+                                <i class="fa-solid fa-calendar-day text-emerald-500 mt-1"></i>
+                                <div>
+                                    <strong class="block text-slate-900 mb-2">Tampilkan Format Tanggal:</strong>
+                                    Buka laci <strong class="text-slate-900">Teks_TanggalLahir</strong>, tarik <code
+                                        class="bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded code-font font-semibold">set Teks_TanggalLahir.Text to</code>.
+                                    <br>
+                                    Buka laci <strong class="text-slate-900">Text</strong>, ambil blok <code
+                                        class="bg-red-100 text-red-800 px-1.5 py-0.5 rounded code-font">join</code>.
+                                    Klik <strong class="text-blue-600"><i class="fa-solid fa-gear"></i> ikon gir
+                                        biru</strong> di blok join tersebut, lalu tarik blok <em>string</em> hingga
+                                    total ada <strong>6 lubang</strong>. Isi berurutan dari atas:
+                                    <ul class="list-disc list-inside mt-3 ml-2 space-y-1.5 text-slate-600">
+                                        <li><strong>Lubang 1:</strong> Ambil blok teks kosong <em>" "</em> dari laci
+                                            <strong>Text</strong>, ketik <code
+                                                class="bg-slate-200 px-1 rounded text-slate-800 font-bold">"Tanggal Lahir: "</code>
+                                            (pakai spasi di akhir).
+                                        </li>
+                                        <li><strong>Lubang 2:</strong> Buka laci <strong>Pilih_TanggalLahir</strong>,
+                                            cari blok hijau muda <code
+                                                class="bg-green-100 text-green-800 px-1 rounded code-font">Pilih_TanggalLahir.Day</code>.
+                                        </li>
+                                        <li><strong>Lubang 3:</strong> Ambil blok teks kosong <em>" "</em>, ketik garis
+                                            miring <code
+                                                class="bg-slate-200 px-1 rounded text-slate-800 font-bold">"/"</code>.
+                                        </li>
+                                        <li><strong>Lubang 4:</strong> Buka laci <strong>Pilih_TanggalLahir</strong>,
+                                            ambil <code
+                                                class="bg-green-100 text-green-800 px-1 rounded code-font">Pilih_TanggalLahir.Month</code>.
+                                        </li>
+                                        <li><strong>Lubang 5:</strong> Ambil blok teks kosong <em>" "</em>, ketik garis
+                                            miring <code
+                                                class="bg-slate-200 px-1 rounded text-slate-800 font-bold">"/"</code>.
+                                        </li>
+                                        <li><strong>Lubang 6:</strong> Buka laci <strong>Pilih_TanggalLahir</strong>,
+                                            ambil <code
+                                                class="bg-green-100 text-green-800 px-1 rounded code-font">Pilih_TanggalLahir.Year</code>.
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li class="flex items-start gap-3 pb-4 border-b border-slate-200">
+                                <i class="fa-solid fa-calculator text-indigo-500 mt-1"></i>
+                                <div class="w-full">
+                                    <strong class="block text-slate-900 mb-2">Logika Matematika Umur (Variabel
+                                        Lokal):</strong>
+                                    <p class="mb-2">Buka laci <strong class="text-slate-900">Variables</strong>, tarik
+                                        blok <code
+                                            class="bg-orange-100 text-orange-800 px-1.5 py-0.5 rounded code-font font-bold">initialize local name to in do</code>.
+                                        <br>
+                                        <span
+                                            class="bg-amber-100 text-amber-800 px-2 py-1 rounded text-sm font-semibold inline-block mt-2 mb-3 shadow-sm border border-amber-200"><i
+                                                class="fa-solid fa-triangle-exclamation mr-1"></i> Penting: Masukkan
+                                            seluruh blok variabel ini ke dalam blok "when Pilih_TanggalLahir", letakkan
+                                            tepat di bawah blok "set Teks_TanggalLahir".</span>
+                                        <br>Klik <strong class="text-blue-600"><i class="fa-solid fa-gear"></i> ikon gir
+                                            biru</strong> pada blok variabel tersebut untuk menambah satu <em>name</em>
+                                        lagi. Ubah nama variabel pertama menjadi <strong>Hitung_Tahun</strong> dan yang
+                                        kedua menjadi <strong>Hitung_Bulan</strong>.
+                                    </p>
+
+                                    <div class="bg-indigo-50/50 p-4 rounded-lg border border-indigo-100 mt-4">
+                                        <h4 class="font-bold text-indigo-900 mb-2"><i
+                                                class="fa-solid fa-arrow-right-to-bracket text-indigo-500 mr-2"></i>A.
+                                            Bagian "to" (Tempat Menaruh Rumus Pengurangan)</h4>
+                                        <p class="text-sm mb-3">Pasangkan blok berikut tepat di sebelah kanan kata
+                                            <strong>to</strong> pada masing-masing variabel:
+                                        </p>
+                                        <ul class="list-disc list-inside ml-2 space-y-4 text-slate-700 text-sm">
+                                            <li><strong>Pada "to" Hitung_Tahun:</strong> Buka laci
+                                                <strong>Math</strong>, ambil blok pengurangan <code
+                                                    class="bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded font-bold">-</code>.
+                                                <ul class="list-none ml-6 mt-1 space-y-1">
+                                                    <li><i class="fa-solid fa-caret-right text-slate-400 mr-1"></i>
+                                                        <span class="font-semibold text-slate-800">Lubang Kiri:</span>
+                                                        Buka laci <strong>Waktu_Sekarang</strong>, tarik <code
+                                                            class="bg-purple-100 text-purple-800 px-1.5 py-0.5 rounded code-font">call Waktu_Sekarang.Year</code>
+                                                        lalu tempelkan <code
+                                                            class="bg-purple-100 text-purple-800 px-1.5 py-0.5 rounded code-font">call Waktu_Sekarang.Now</code>
+                                                        di ujungnya.
+                                                    </li>
+                                                    <li><i class="fa-solid fa-caret-right text-slate-400 mr-1"></i>
+                                                        <span class="font-semibold text-slate-800">Lubang Kanan:</span>
+                                                        Buka laci <strong>Pilih_TanggalLahir</strong>, tarik <code
+                                                            class="bg-green-100 text-green-800 px-1.5 py-0.5 rounded code-font">Pilih_TanggalLahir.Year</code>.
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><strong>Pada "to" Hitung_Bulan:</strong> Buka laci
+                                                <strong>Math</strong>, ambil blok pengurangan <code
+                                                    class="bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded font-bold">-</code>.
+                                                <ul class="list-none ml-6 mt-1 space-y-1">
+                                                    <li><i class="fa-solid fa-caret-right text-slate-400 mr-1"></i>
+                                                        <span class="font-semibold text-slate-800">Lubang Kiri:</span>
+                                                        Buka laci <strong>Waktu_Sekarang</strong>, tarik <code
+                                                            class="bg-purple-100 text-purple-800 px-1.5 py-0.5 rounded code-font">call Waktu_Sekarang.Month</code>
+                                                        lalu tempelkan <code
+                                                            class="bg-purple-100 text-purple-800 px-1.5 py-0.5 rounded code-font">call Waktu_Sekarang.Now</code>.
+                                                    </li>
+                                                    <li><i class="fa-solid fa-caret-right text-slate-400 mr-1"></i>
+                                                        <span class="font-semibold text-slate-800">Lubang Kanan:</span>
+                                                        Buka laci <strong>Pilih_TanggalLahir</strong>, tarik <code
+                                                            class="bg-green-100 text-green-800 px-1.5 py-0.5 rounded code-font">Pilih_TanggalLahir.Month</code>.
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="flex items-start gap-3 pb-2">
+                                <i class="fa-solid fa-layer-group text-pink-500 mt-1"></i>
+                                <div class="w-full">
+                                    <strong class="block text-slate-900 mb-2">B. Bagian "in" (Tempat Menaruh
+                                        Aksi)</strong>
+                                    <p class="text-sm mb-4">Perhatikan rongga besar bertuliskan <strong>"in"</strong> di
+                                        bagian bawah blok variabel lokalmu. Semua blok di langkah ini <strong>WAJIB
+                                            dimasukkan ke dalam rongga "in" tersebut</strong>.</p>
+
+                                    <div class="space-y-5">
+                                        <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                                            <h5 class="font-bold text-slate-800 mb-2 border-l-4 border-blue-500 pl-2">
+                                                Langkah 1: Perbaikan Jika Bulan Negatif</h5>
+                                            <p class="text-sm mb-2 text-slate-600">Buka laci <strong
+                                                    class="text-slate-900">Control</strong>, tarik blok <code
+                                                    class="bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded code-font">if then</code>
+                                                ke dalam rongga <strong>in</strong>.</p>
+                                            <ul class="list-disc list-inside ml-2 space-y-2 text-slate-700 text-sm">
+                                                <li><strong>Kondisi (if):</strong> Buka laci <strong>Math</strong>,
+                                                    ambil blok <code
+                                                        class="bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded font-bold">=</code>
+                                                    lalu klik logonya dan ubah menjadi <em>lebih kecil</em> <code
+                                                        class="bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded font-bold">&lt;</code>.
+                                                    <br>Pasangkan <code
+                                                        class="bg-orange-100 text-orange-800 px-1.5 py-0.5 rounded code-font">get Hitung_Bulan</code>
+                                                    di kiri, dan angka <code
+                                                        class="bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded font-bold">0</code>
+                                                    di kanan.
+                                                </li>
+                                                <li><strong>Jika Terjadi (then):</strong> Kita pinjam 1 tahun untuk
+                                                    diubah menjadi 12 bulan.
+                                                    <ul class="list-none ml-6 mt-1 space-y-1">
+                                                        <li>- Tarik <code
+                                                                class="bg-orange-100 text-orange-800 px-1.5 py-0.5 rounded code-font">set Hitung_Tahun to</code>,
+                                                            pasangkan pengurangan <code
+                                                                class="bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded font-bold">-</code>
+                                                            berisi: <code
+                                                                class="bg-orange-100 text-orange-800 px-1.5 py-0.5 rounded code-font">get Hitung_Tahun</code>
+                                                            dikurangi <code
+                                                                class="bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded font-bold">1</code>.
+                                                        </li>
+                                                        <li>- Tarik <code
+                                                                class="bg-orange-100 text-orange-800 px-1.5 py-0.5 rounded code-font">set Hitung_Bulan to</code>,
+                                                            pasangkan penjumlahan <code
+                                                                class="bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded font-bold">+</code>
+                                                            berisi: <code
+                                                                class="bg-orange-100 text-orange-800 px-1.5 py-0.5 rounded code-font">get Hitung_Bulan</code>
+                                                            ditambah <code
+                                                                class="bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded font-bold">12</code>.
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                                            <h5
+                                                class="font-bold text-slate-800 mb-2 border-l-4 border-emerald-500 pl-2">
+                                                Langkah 2: Tampilkan Hasil Akhir Umur</h5>
+                                            <p class="text-sm mb-2 text-slate-600">Letakkan tepat <strong>di
+                                                    bawah</strong> blok <em>if-then</em> tadi (masih di dalam rongga
+                                                <strong>in</strong> variabel lokal). Buka laci <strong
+                                                    class="text-slate-900">Teks_Umur</strong>, tarik <code
+                                                    class="bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded code-font font-semibold">set Teks_Umur.Text to</code>.
+                                            </p>
+                                            <p class="text-sm mb-2 text-slate-600">Buka laci <strong
+                                                    class="text-slate-900">Text</strong>, ambil <code
+                                                    class="bg-red-100 text-red-800 px-1.5 py-0.5 rounded code-font">join</code>.
+                                                Klik <strong class="text-blue-600"><i class="fa-solid fa-gear"></i> ikon
+                                                    gir biru</strong>, atur agar memiliki <strong>4 lubang</strong>. Isi
+                                                berurutan dari atas:</p>
+                                            <ul class="list-disc list-inside ml-2 space-y-1.5 text-slate-700 text-sm">
+                                                <li><strong>Lubang 1:</strong> Buka laci Variables, tarik <code
+                                                        class="bg-orange-100 text-orange-800 px-1.5 py-0.5 rounded code-font">get Hitung_Tahun</code>.
+                                                </li>
+                                                <li><strong>Lubang 2:</strong> Ambil blok teks kosong <em>" "</em>,
+                                                    ketik <code
+                                                        class="bg-slate-200 px-1.5 py-0.5 rounded text-slate-800 font-bold">" Tahun "</code>
+                                                    (tambahkan spasi sebelum kata T dan sesudah kata n).</li>
+                                                <li><strong>Lubang 3:</strong> Buka laci Variables, tarik <code
+                                                        class="bg-orange-100 text-orange-800 px-1.5 py-0.5 rounded code-font">get Hitung_Bulan</code>.
+                                                </li>
+                                                <li><strong>Lubang 4:</strong> Ambil blok teks kosong <em>" "</em>,
+                                                    ketik <code
+                                                        class="bg-slate-200 px-1.5 py-0.5 rounded text-slate-800 font-bold">" Bulan"</code>
+                                                    (tambahkan spasi sebelum kata B).</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="flex items-start gap-3 pb-4 border-b border-slate-200">
+                                <i class="fa-solid fa-code-branch text-blue-500 mt-1"></i>
+                                <div>
+                                    <strong class="block text-slate-900 mb-2">Perbaikan Umur (Jika Bulan
+                                        Negatif):</strong>
+                                    Masukkan blok logika ini ke dalam rongga <strong>do</strong> pada variabel lokal di
+                                    atas. Buka laci <strong class="text-slate-900">Control</strong>, tarik blok <code
+                                        class="bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded code-font">if then</code>.
+                                    <ul class="list-disc list-inside mt-3 ml-2 space-y-2 text-slate-600">
+                                        <li><strong>Kondisi (if):</strong> Buka laci <strong>Math</strong>, ambil blok
+                                            <code class="bg-blue-100 text-blue-800 px-1 rounded font-bold">=</code> lalu
+                                            klik logo <em>sama dengan</em> dan ubah menjadi <em>lebih kecil</em> <code
+                                                class="bg-blue-100 text-blue-800 px-1 rounded font-bold">&lt;</code>.
+                                            <br>Isi lubang kirinya dengan <code
+                                                class="bg-orange-100 text-orange-800 px-1 rounded code-font">get Hitung_Bulan</code>
+                                            dan lubang kanannya dengan angka <code
+                                                class="bg-blue-100 text-blue-800 px-1 rounded font-bold">0</code> (dari
+                                            laci Math).
+                                        </li>
+                                        <li><strong>Jika Terjadi (then):</strong> Kita pinjam 1 tahun untuk diubah
+                                            menjadi 12 bulan.
+                                            <br>- Tarik <code
+                                                class="bg-orange-100 text-orange-800 px-1 rounded code-font">set Hitung_Tahun to</code>,
+                                            pasangkan blok pengurangan <code
+                                                class="bg-blue-100 text-blue-800 px-1 rounded font-bold">-</code>
+                                            berisi: <code
+                                                class="bg-orange-100 text-orange-800 px-1 rounded code-font">get Hitung_Tahun</code>
+                                            dikurangi angka <code
+                                                class="bg-blue-100 text-blue-800 px-1 rounded font-bold">1</code>.
+                                            <br>- Tarik <code
+                                                class="bg-orange-100 text-orange-800 px-1 rounded code-font">set Hitung_Bulan to</code>,
+                                            pasangkan blok penjumlahan <code
+                                                class="bg-blue-100 text-blue-800 px-1 rounded font-bold">+</code>
+                                            berisi: <code
+                                                class="bg-orange-100 text-orange-800 px-1 rounded code-font">get Hitung_Bulan</code>
+                                            ditambah angka <code
+                                                class="bg-blue-100 text-blue-800 px-1 rounded font-bold">12</code>.
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-tv text-slate-500 mt-1"></i>
+                                <div>
+                                    <strong class="block text-slate-900 mb-2">Tampilkan Hasil Akhir Umur:</strong>
+                                    Masih di dalam area <strong>do</strong> variabel lokal (tepat di bawah blok
+                                    if-then), buka laci <strong class="text-slate-900">Teks_Umur</strong> dan tarik
+                                    <code
+                                        class="bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded code-font font-semibold">set Teks_Umur.Text to</code>.
+                                    <br>
+                                    Buka laci <strong class="text-slate-900">Text</strong>, ambil <code
+                                        class="bg-red-100 text-red-800 px-1.5 py-0.5 rounded code-font">join</code>.
+                                    Klik <strong class="text-blue-600"><i class="fa-solid fa-gear"></i> ikon gir
+                                        biru</strong> dan atur agar memiliki <strong>4 lubang</strong>. Isi berurutan
+                                    dari atas:
+                                    <ul class="list-disc list-inside mt-3 ml-2 space-y-1.5 text-slate-600">
+                                        <li><strong>Lubang 1:</strong> Buka laci Variables, tarik <code
+                                                class="bg-orange-100 text-orange-800 px-1 rounded code-font">get Hitung_Tahun</code>.
+                                        </li>
+                                        <li><strong>Lubang 2:</strong> Ambil blok teks kosong <em>" "</em>, ketik <code
+                                                class="bg-slate-200 px-1 rounded text-slate-800 font-bold">" Tahun "</code>
+                                            (tambahkan spasi sebelum kata T dan sesudah kata n).</li>
+                                        <li><strong>Lubang 3:</strong> Buka laci Variables, tarik <code
+                                                class="bg-orange-100 text-orange-800 px-1 rounded code-font">get Hitung_Bulan</code>.
+                                        </li>
+                                        <li><strong>Lubang 4:</strong> Ambil blok teks kosong <em>" "</em>, ketik <code
+                                                class="bg-slate-200 px-1 rounded text-slate-800 font-bold">" Bulan"</code>
+                                            (tambahkan spasi sebelum kata B).</li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="text-center mt-6 bg-white border border-slate-200 p-6 rounded-2xl max-w-md mx-auto shadow-sm">
+            <p class="text-xs text-slate-400 font-medium uppercase tracking-widest mb-1">Status Proyek</p>
+            <p class="text-sm text-emerald-600 font-bold flex items-center justify-center gap-1.5">
+                <i class="fa-solid fa-circle-check"></i> Seluruh Alur Screen Selesai Diatur!
+            </p>
+        </div>
+
+    </main>
+
+    <div id="modalKode" class="hidden fixed inset-0 z-50 flex items-center justify-center">
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="tutupModal()"></div>
+
+        <div
+            class="relative bg-white rounded-3xl shadow-2xl p-8 max-w-sm w-full mx-4 modal-enter border border-slate-100">
+            <button onclick="tutupModal()"
+                class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 hover:text-slate-800 transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center mb-6 mt-2">
+                <div
+                    class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 mb-2">Akses Terkunci</h3>
+                <p class="text-sm text-slate-500">Masukkan kode akses khusus untuk membuka tantangan selanjutnya.</p>
+            </div>
+
+            <div class="space-y-4">
+                <div>
+                    <input type="password" id="inputKode" placeholder="Masukkan kode di sini..."
+                        class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all text-center font-medium placeholder-slate-400"
+                        onkeypress="if(event.key === 'Enter') validasiKode()">
+                    <p id="pesanError" class="hidden text-xs text-red-500 font-medium mt-2 text-center animate-pulse">
+                        <i class="fa-solid fa-circle-exclamation mr-1"></i> Kode yang dimasukkan salah!
+                    </p>
+                </div>
+                <button onclick="validasiKode()"
+                    class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-xl shadow-md transition-colors">
+                    Buka Modul
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function bukaModal() {
+            const modal = document.getElementById('modalKode');
+            modal.classList.remove('hidden');
+            document.getElementById('inputKode').value = '';
+            document.getElementById('pesanError').classList.add('hidden');
+            setTimeout(() => {
+                document.getElementById('inputKode').focus();
+            }, 100);
+        }
+
+        function tutupModal() {
+            document.getElementById('modalKode').classList.add('hidden');
+        }
+
+        function validasiKode() {
+            const kodeInput = document.getElementById('inputKode').value;
+            const pesanError = document.getElementById('pesanError');
+
+            // Kode rahasia
+            if (kodeInput === 'smpn10') {
+                tutupModal();
+
+                // Sembunyikan tombol selanjutnya
+                document.getElementById('btnSelanjutnyaWrapper').classList.add('hidden');
+
+                // Munculkan section rahasia
+                const tahapRahasia = document.getElementById('tahapRahasia');
+                tahapRahasia.classList.remove('hidden');
+
+                // Scroll ke section rahasia dengan halus
+                setTimeout(() => {
+                    tahapRahasia.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 300);
+            } else {
+                // Tampilkan error
+                pesanError.classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+
+</html>
