@@ -124,8 +124,6 @@ Karena isi dari bagian `else` kamu saat ini terlalu rumit dan ada penempatan `jo
    - Buka komponen **Notifikasi_Pesan**, ambil `call Notifikasi_Pesan .ShowAlert`. Tempelkan di bawah blok StoreValue.
    - Isi notice dengan `"Top Up Berhasil! (Dipotong Admin 2.000)"`.
 
-_(Catatan: Saya merekomendasikan untuk **menghapus** blok yang berkaitan dengan `global TopUp` dan tag `"DataTopUp"` dari kodemu jika kamu belum membuat fitur riwayat/history transaksi. Blok tersebut saat ini hanya memberatkan memori tanpa fungsi)._
-
 ---
 
 ### Bagian 6: Memperbaiki Error Saat Input Nominal Top Up Kosong
