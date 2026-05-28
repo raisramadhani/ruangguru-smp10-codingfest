@@ -211,3 +211,67 @@ Agar visual _progress bar_ berjalan secara akurat berdasarkan persentase penyele
 
 **Formula akhirnya akan berbentuk:**
 `set LinearProgress1 .Progress to` -> `(get global SaldoSaatIni / get global HargaTarget) * 100`
+
+---
+
+### Bagian 8: Membuat Fitur Kalkulator Rencana Keuangan
+
+Pada fitur ini, kita akan membuat kalkulator sederhana yang bisa membagi total target uang dengan jumlah hari, sehingga muncul rekomendasi nominal yang harus ditabung setiap harinya.
+
+**A. Persiapan di Halaman Designer**
+
+Karena layar `RencanaKeuangan` masih kosong, kita perlu menambahkan komponen input dan tombolnya terlebih dahulu. Pastikan kamu berada di mode **Designer**.
+
+1. **Membuat Input Nominal Target**:
+   - Dari panel **User Interface** (sebelah kiri), tarik komponen **TextBox** ke dalam layar.
+   - Di panel **Properties** (sebelah kanan), centang kotak **NumbersOnly** (agar hanya bisa diisi angka).
+   - Ubah **Hint** menjadi `Nominal Target (contoh: 100000)`.
+   - Di panel **Components** (tengah), klik **Rename** dan ubah namanya menjadi `Input_TargetTabungan`.
+2. **Membuat Input Jumlah Hari**:
+   - Tarik satu komponen **TextBox** lagi ke bawah input pertama.
+   - Centang juga kotak **NumbersOnly**.
+   - Ubah **Hint** menjadi `Jumlah Hari (contoh: 30)`.
+   - Klik **Rename** komponen ini menjadi `Input_LamaHari`.
+3. **Membuat Tombol Hitung**:
+   - Tarik komponen **Button** ke bawah input kedua.
+   - Ubah **Text** di panel **Properties** menjadi `Hitung Rencana`.
+   - Klik **Rename** komponennya menjadi `Tombol_HitungRencana`.
+4. **Membuat Tempat Menampilkan Hasil**:
+   - Tarik komponen **Label** ke bagian paling bawah.
+   - Hapus tulisan di dalam **Text** agar kosong (label ini tidak akan terlihat sampai tombol ditekan).
+   - Ubah ukuran huruf (**FontSize**) menjadi `16.0` dan centang **FontBold** agar hasilnya tebal.
+   - Klik **Rename** komponen ini menjadi `Label_HasilRekomendasi`.
+5. **Menambahkan Notifikasi**:
+   - Tarik komponen **Notifier** dari panel kiri ke dalam layar (akan masuk ke bagian _Non-visible components_ di bawah layar HP).
+   - Klik **Rename** menjadi `Notifikasi_Pesan` (jika kamu belum menambahkannya di halaman ini).
+
+---
+
+**B. Merangkai Logika di Halaman Blocks**
+
+Beralih ke mode **Blocks**. Kita akan menggunakan logika pencegahan _error_ (seperti pada Bagian 6) agar aplikasi tidak _error_ jika input kosong atau jika jumlah hari diisi angka 0.
+
+1. Buka komponen **Tombol_HitungRencana** (warna hijau tua) di panel kiri, ambil blok coklat `when Tombol_HitungRencana .Click` dan letakkan di area kosong.
+2. Buka kategori **Control** (warna oranye kekuningan), ambil blok `if ... then ... else`. Tempelkan ke dalam blok klik tadi.
+3. **Memodifikasi blok `if` menjadi 3 cabang**:
+   - Klik ikon **roda gigi (gear) biru** pada pojok kiri atas blok `if` tersebut.
+   - Tarik blok `else if` dari kiri kotak kecil, dan pasangkan di bawah blok `if` di sebelah kanan. Tutup kembali kotak gear-nya dengan mengklik ikon gear lagi.
+4. **Mengisi kondisi 1 (Pengecekan Input Kosong)**:
+   - Buka kategori **Logic** (warna hijau muda), ambil blok `[ ] or [ ]` dan tempelkan di lubang sebelah tulisan `if` paling atas.
+   - Di lubang kiri blok `or`: Buka kategori **Text** (warna merah muda), ambil blok `is empty`. Isi lubangnya dengan mengambil blok hijau muda `Input_TargetTabungan .Text` (dari komponen **Input_TargetTabungan**).
+   - Di lubang kanan blok `or`: Buka kategori **Text** lagi, ambil blok `is empty`. Isi lubangnya dengan mengambil blok hijau muda `Input_LamaHari .Text` (dari komponen **Input_LamaHari**).
+   - Di dalam area `then` pertama: Buka komponen **Notifikasi_Pesan** (warna ungu), ambil blok `call Notifikasi_Pesan .ShowAlert`. Isi lubang `notice`-nya dengan blok teks kosong `" "` dari kategori **Text**, lalu ketikkan `"Semua kolom harus diisi!"`.
+5. **Mengisi kondisi 2 (Pengecekan Hari = 0)**:
+   - Buka kategori **Logic**, ambil blok perbandingan `[ ] = [ ]`. Tempelkan di lubang sebelah tulisan `else if`.
+   - Di lubang kiri blok `=`: Ambil blok hijau muda `Input_LamaHari .Text`.
+   - Di lubang kanan blok `=`: Buka kategori **Math** (warna biru tua), ambil blok angka `0`, dan tempelkan.
+   - Di dalam area `then` kedua: Buka komponen **Notifikasi_Pesan**, ambil blok `call Notifikasi_Pesan .ShowAlert`. Isi lubang `notice`-nya dengan blok teks kosong `" "` dan ketikkan `"Jumlah hari tidak boleh 0!"`. _(Ini sangat penting karena angka matematika tidak bisa dibagi dengan nol)_.
+6. **Mengisi kondisi 3 (Menghitung Rekomendasi di area `else`)**:
+   - Buka komponen **Label_HasilRekomendasi** (warna hijau tua), ambil blok `set Label_HasilRekomendasi .Text to`. Tempelkan di dalam celah `else` yang paling bawah.
+   - Buka kategori **Text** (merah muda), ambil blok `join`. Tempelkan di lubang blok `set` tadi.
+   - Blok `join` bawaan hanya memiliki 2 lubang. Klik ikon **roda gigi (gear) biru** pada blok `join` tersebut, lalu tarik satu blok `string` tambahan ke kanan agar `join` memiliki **3 lubang**. Tutup kotak gear-nya.
+   - Di **lubang ke-1 join (paling atas)**: Ambil blok teks kosong `" "` dari kategori **Text**, ketikkan `"Rekomendasi menabung: Rp "`. _(Pastikan memberi spasi setelah tulisan Rp)_.
+   - Di **lubang ke-2 join (tengah untuk perhitungan)**: Buka kategori **Math** (biru tua), ambil blok pembagian `[ ] / [ ]`.
+     - Di lubang kiri pembagian: Ambil blok hijau muda `Input_TargetTabungan .Text`.
+     - Di lubang kanan pembagian: Ambil blok hijau muda `Input_LamaHari .Text`.
+   - Di **lubang ke-3 join (paling bawah)**: Ambil blok teks kosong `" "` dari kategori **Text**, ketikkan `" per hari"`. _(Pastikan memberi spasi sebelum kata per)_.
