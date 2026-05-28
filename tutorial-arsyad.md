@@ -160,7 +160,7 @@ Kita akan memodifikasi blok `if` yang sudah ada agar memiliki 3 kondisi cabang (
 
 ![alt text](image-5.png)
 
-### Bagian 4: Menampilkan Target, Saldo, dan Persentase Progres di Halaman Utama
+### Bagian 7: Menampilkan Target, Saldo, dan Persentase Progres di Halaman Utama
 
 Kita akan mengatur agar saat Halaman Utama dibuka, aplikasi langsung menarik data dari database dan melakukan perhitungan matematika agar visual _progress bar_ menampilkan persentase penyelesaian yang akurat.
 
